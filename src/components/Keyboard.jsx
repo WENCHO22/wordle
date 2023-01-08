@@ -18,7 +18,7 @@ function Keyboard() {
         ))}
       </div>
       <div className="line3">
-        <Key bigKey={true} keyVal={"Enter"} />
+        <Key bigKey={true} keyVal={"ENTER"} />
         {keys3.map((key) => (
           <Key keyVal={key} />
         ))}
