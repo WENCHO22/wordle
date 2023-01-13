@@ -11,7 +11,6 @@ function Letter({ letterPos, attemptVal }) {
   const letterState =
     currAttempt.attempt > attemptVal &&
     (correct ? "correct" : almost ? "almost" : "wrong");
-  console.log(correctWord[letterPos]);
   return (
     <div className="letter" id={letterState}>
       {letter}

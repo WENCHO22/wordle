@@ -1,22 +1,31 @@
 import "./App.css";
 import Board from "./components/Board";
 import Keyboard from "./components/Keyboard";
-import { useState, createContext } from "react";
-import { boardDefault } from "./components/Words";
+import { useState, createContext, useEffect } from "react";
+import { boardDefault, generateWordSet } from "./components/Words";
 
 export const AppContext = createContext();
 
 function App() {
   const [board, setBoard] = useState(boardDefault);
   const [currAttempt, setCurrAttempt] = useState({ attempt: 0, letterPos: 0 });
-  const correctWord = "RIGHT"; //Debe ser en mayusculas siempre!!!!
+  const [wordSet, setWordSet] = useState(new Set());
+
+  const correctWord = "RIGHT"; //Debe ser en mayusculas siempre!!!! -- siguiente cambio
+
+  useEffect(() => {
+    generateWordSet().then((words) => {
+      console.log(words);
+      setWordSet(words.wordSet);
+    });
+  }, []);
 
   const onSelectLetter = (keyVal) => {
     if (currAttempt.letterPos > 4) return;
     const newBoard = [...board];
     newBoard[currAttempt.attempt][currAttempt.letterPos] = keyVal;
     setBoard(newBoard);
-    setCurrAttempt({ ...currAttempt, letterPos: currAttempt.letterPos + 1 }); // aki cambia
+    setCurrAttempt({ ...currAttempt, letterPos: currAttempt.letterPos + 1 });
   };
 
   const onDelete = () => {
@@ -29,7 +38,20 @@ function App() {
 
   const onEnter = () => {
     if (currAttempt.letterPos !== 5) return;
-    setCurrAttempt({ attempt: currAttempt.attempt + 1, letterPos: 0 });
+    let currWord = "";
+    for (let i = 0; i < 5; i++) {
+      currWord += board[currAttempt.attempt][i];
+      console.log(currWord);
+    }
+    if (wordSet.has(currWord.toLowerCase())) {
+      setCurrAttempt({ attempt: currAttempt.attempt + 1, letterPos: 0 });
+    } else {
+      alert(`${currWord} is not a word(not found)`);
+    }
+
+    if (currWord === correctWord) {
+      alert("You won! Congratulations!");
+    }
   };
 
   return (
