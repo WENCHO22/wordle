@@ -10,6 +10,7 @@ function App() {
   const [board, setBoard] = useState(boardDefault);
   const [currAttempt, setCurrAttempt] = useState({ attempt: 0, letterPos: 0 });
   const [wordSet, setWordSet] = useState(new Set());
+  const [disabledLetters, setDisabledLetters] = useState([]);
 
   const correctWord = "RIGHT"; //Debe ser en mayusculas siempre!!!! -- siguiente cambio
 
@@ -69,6 +70,8 @@ function App() {
           onEnter,
           onSelectLetter,
           correctWord,
+          setDisabledLetters,
+          disabledLetters,
         }}
       >
         <div className="game">
