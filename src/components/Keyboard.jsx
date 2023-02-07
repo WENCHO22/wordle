@@ -31,7 +31,7 @@ function Keyboard() {
   }, [handleKeyboard]); //SI
   return (
     <div className="keyboard" onKeyDown={handleKeyboard}>
-      <div className="line1">
+      <div>
         {keys1.map((key) => (
           <Key
             keyVal={key}
@@ -40,7 +40,7 @@ function Keyboard() {
           />
         ))}
       </div>
-      <div className="line2">
+      <div>
         {keys2.map((key) => (
           <Key
             keyVal={key}
@@ -49,7 +49,7 @@ function Keyboard() {
           />
         ))}
       </div>
-      <div className="line3">
+      <div>
         <Key bigKey={true} keyVal={"ENTER"} key={"enter"} />
         {keys3.map((key) => (
           <Key

@@ -2,8 +2,6 @@
   text-align: center;
   background-color: #121212;
   width: 100vw;
-  height: 100vh;
-  /* display: flex; */
   color: white;
 }
 
@@ -26,20 +24,24 @@ nav h1 {
   font-family: Helvetica, Arial, sans-serif;
   color: white;
   font-size: 45px;
+  position: relative;
+  left: auto;
+  right: auto;
 }
 .game {
   width: 100vw;
-  height: calc(100vh - 170px);
+  height: calc(100vh - 101px);
   display: flex;
   align-items: center;
-  padding-top: 50px;
+  padding-top: 40px;
   flex-direction: column;
+  position: relative;
 }
 
 .board {
-  width: 450px;
-  height: 550px;
-  border: 1px solid black;
+  aspect-ratio: 55 / 60;
+  height: 50vh;
+  position: relative;
   display: flex;
   flex-direction: column;
 }
@@ -49,10 +51,11 @@ nav h1 {
   display: flex;
   flex-direction: row;
   margin: 5px;
+  justify-content: center;
 }
 
 .letter {
-  flex: 33%;
+  aspect-ratio: 1 / 1;
   height: 100%;
   border: 1px solid grey;
   margin: 5px;
@@ -77,38 +80,24 @@ nav h1 {
 }
 
 .keyboard {
-  width: 700px;
-  height: 180px;
-  margin-top: 40px;
+  aspect-ratio: 2 / 7;
+  min-width: 70%;
+  max-height: 20vh;
+  position: fixed;
+  bottom: 40px;
 }
 
-.line1 {
-  flex: 33%;
-  display: flex;
-  flex-direction: row;
-  display: flex;
-  justify-content: center;
-  margin: 5px;
-}
-.line2 {
+.keyboard > div {
   flex: 33%;
   display: flex;
   flex-direction: row;
   justify-content: center;
   margin: 5px;
 }
-.line3 {
-  flex: 33%;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin: 5px;
-}
-
 .key {
-  width: 40px;
-  height: 55px;
-  margin: 5px;
+  width: 36px;
+  height: 50px;
+  margin: 3px;
   border-radius: 4px;
   display: grid;
   place-items: center;
@@ -124,4 +113,15 @@ nav h1 {
 }
 #disabled {
   background-color: #3a393c;
+}
+
+@media only screen and (max-width: 600px) {
+  .keyboard {
+    width: 95%;
+  }
+  .board {
+    height: auto;
+    max-height: 55vh;
+    width: 90%;
+  }
 }
